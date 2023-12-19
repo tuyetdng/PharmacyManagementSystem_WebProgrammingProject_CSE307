@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Report_PharCY </title>
+
+    <!-- Css file -->
+    <link rel="stylesheet" href="./MainStyles.css">
+    <link rel="stylesheet" href="./demo.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!-- Boxicon -->
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart API at google.com -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+
+<body>
+    <header class="cd__intro">
+        <div>
+            <i class='bx bx-bar-chart-alt'></i>
+            <span style="font-size: 18px;"><strong>Report</strong></span></br>
+            <!-- <span>Home</span></br> -->
+            <i class='bx bx-menu'></i>
+            <!-- <span class="text"></span><br> -->
+            <hr class="red">
+        </div>
+
+    </header>
+
+    <main class="cd__main">
+
+        <div class="sidebar close">
+            <div class="logo-details">
+                <i class='bx bx-plus-medical'></i>
+                <span class="logo_name">PharCY</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="dashboard.html">
+                        <i class='bx bx-home'></i>
+                        <span class="link_name">Home</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="dashboard.html">Home</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <div class="iocn-link">
+                        <a href="#">
+                            <i class='bx bx-purchase-tag-alt'></i>
+                            <span class="link_name">Product</span>
+                        </a>
+                        <i class='bx bxs-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#">Product</a></li>
+                        <li><a href="medicine.html">Medicine</a></li>
+                        <li><a href="stock.html">Stock</a></li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="purchaseInvoice.html">
+                        <i class='bx bx-import'></i>
+                        <span class="link_name">Purchase</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="purchaseInvoice.html">Purchase</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="saleInvoice.html">
+                        <i class='bx bxs-printer'></i>
+                        <span class="link_name">Sales Invoice</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="saleInvoice.html">Sales Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="report.html">
+                        <i class='bx bx-bar-chart-alt'></i>
+                        <span class="link_name">Report</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="report.html">Report</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+        <section class="home-section">
+            <div class="home-content">
+                <nav class="sumr">
+                    <div
+                        style="text-align: center; background-color: #1fcbff; width: 240px; height: 170px; padding-left: 19px; padding-top: 24px; border-radius: 9px; margin-right: 50px; margin-left: 20px;">
+                        <div
+                            style="background-color: #242424;color: white; width:198px; height: 120px; border-radius: 9px;">
+                            <p style="font-size: 17px;">Total Medicine Available </p>
+                            <p style="font-size: 27px;">695</p>
+                            <div style="width: 100%; height: 100%; display: flex; padding-left: 130px;">
+                                <i class='bx bx-plus-medical'></i>
+                                <p>PharCY</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div
+                        style="text-align: center; background-color: #1fcbff; width: 240px; height: 170px; padding-left: 19px; padding-top: 24px; border-radius: 9px; margin-right: 50px;">
+                        <div
+                            style="text-align: center; background-color: #242424;color: white; width:198px; height: 120px; border-radius: 9px;">
+                            <p style="font-size: 17px;">Invoice Unpaid</p>
+                            <p style="font-size: 27px;">1</p>
+                            <div style="width: 100%; height: 100%; display: flex; padding-left: 130px;">
+                                <i class='bx bx-plus-medical'></i>
+                                <p>PharCY</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div
+                        style="text-align: center; background-color: #1fcbff; width: 240px; height: 170px; padding-left: 19px; padding-top: 24px; border-radius: 9px; margin-right: 50px;">
+                        <div
+                            style="background-color: #242424;color: white; width:198px; height: 120px; border-radius: 9px;">
+                            <p style="font-size: 17px;">Total Sales Order </p>
+                            <p style="font-size: 27px;">4</p>
+                            <div style="width: 100%; height: 100%; display: flex; padding-left: 130px;">
+                                <i class='bx bx-plus-medical'></i>
+                                <p>PharCY</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div
+                        style="text-align: center; background-color: #1fcbff; width: 240px; height: 170px; padding-left: 19px; padding-top: 24px; border-radius: 9px; margin-right: 50px;">
+                        <div
+                            style="background-color: #242424;color: white; width:198px; height: 120px; border-radius: 9px;">
+                            <p style="font-size: 17px;">Stock Issues</p>
+                            <p style="font-size: 27px;">8</p>
+                            <div style="width: 100%; height: 100%; display: flex; padding-left: 130px;">
+                                <i class='bx bx-plus-medical'></i>
+                                <p>PharCY</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+
+                <div class="rowInv">
+                    <div class="columnInv1">
+                        <div style="width: 100%;">
+                            <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
+
+                            <script>
+                                const xValues = ["CardioGuard", "NeuroStabilin", "ArthroFlexin", "DigestiCare", "VitaCure Forte"];
+                                const yValues = [120, 85, 90, 80, 100, 50];
+                                const barColors = ["coral", "aqua", "hotpink", "seagreen", "goldenrod"];
+
+                                new Chart("myChart", {
+                                    type: "bar",
+                                    data: {
+                                        labels: xValues,
+                                        datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                    },
+                                    options: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: "Most Sales Medicine in Month"
+                                        }
+                                    }
+                                });
+                            </script>
+
+                        </div>
+                    </div>
+
+                    <div class="columnInv2">
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                                    #Expire Data Notification
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                                <div class="card-body">
+                                    <div
+                                        style="background-color: lightblue; width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : PainRelievex<br> Batch Name : HD5678C</p>
+                                    </div>
+
+                                    <div
+                                        style="background-color: lightblue; width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : DigestiCare<br> Batch Name : M6789Y</p>
+                                    </div>
+
+                                    <div
+                                        style="background-color: lightblue; width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : ArthroFlexin<br> Batch Name : BC1234Q</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                                    #Out of Stock Notification
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                                <div class="card-body">
+                                    <div
+                                        style="width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : PainRelievex<br> Batch Name : HD5678C</p>
+                                    </div>
+
+                                    <div
+                                        style="width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : NeuroStabilin<br> Batch Name : VP4321A</p>
+                                    </div>
+
+                                    <div
+                                        style="width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : DigestaEase<br> Batch Name : XR9876B</p>
+                                    </div>
+
+                                    <div
+                                        style="width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : CardioGuard<br> Batch Name : VP4321A</p>
+                                    </div>
+
+                                    <div
+                                        style="width: 100%; border-radius: 8px; padding-left: 30px;">
+                                        <p>Name : ArthroFlexin<br> Batch Name : BC1234Q</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </section>
+    </main>
+    <div class="footer">
+        <a onclick="window.scrollTo(0,0)"><img src="img/backtopbtn.png"
+                style="width: 45px; height: 45px; float:right;"></a>
+
+        <div class="row">
+            <div class="column1">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.4248528798034!2d-0.16113062441123302!3d51.52376697181705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761acf335de791%3A0xfcd227d9a53748f3!2sThe%20Sherlock%20Holmes%20Museum!5e0!3m2!1sen!2s!4v1702054793994!5m2!1sen!2s"
+                    width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="column2">
+                <h2><span id="icon" class="fa fa-map-marker"></span></h2>
+                <p>Baker St, London NW1 6XE,
+                    <br />United Kingdom
+                </p>
+            </div>
+            <div class="column3">
+                <h2> <span id="icon" class="fa fa-phone"></span></h2>
+                <p> Telephone: +123-456-7890</p>
+
+            </div>
+            <div class="column4">
+                <h2><span id="icon" class="fa fa-envelope"></span></h2>
+                <p>abcPharcymanag@gmai.com</p>
+                <img src="img/social-twitter-icon.png" style="width: 40px; height: 40px; float:right; padding: 5px">
+                <img src="img/ins.png" style="width: 40px; height: 40px; float:right; padding: 5px;">
+                <img src="img/gg.JPG" style="width: 40px; height: 40px; float:right; padding: 5px;">
+
+            </div>
+        </div>
+        <!-- <div class="w3-padding w3-xlarge w3-text">
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-twitter"></i>
+        </div> -->
+        <div class="coppyRight">
+            <p>© Pharmacy Management | anh_tuyet</p>
+
+        </div>
+
+    </div>
+
+    <!--Javascrip -->
+    <script src="./MainScrip.js"></script>
+</body>
+
+</html>

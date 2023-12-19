@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Medicine Product_PharCY </title>
+
+    <!-- Css file -->
+    <link rel="stylesheet" href="./MainStyles.css">
+    <link rel="stylesheet" href="./demo.css">
+    <!-- Boxicon -->
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<style>
+    #myInput {
+        background-image: url('img/icons8-search-26.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    input[type=text],
+    input[type=password] {
+
+        padding: 12px 20px;
+        margin: 8px 8px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    Set a style for all buttons button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    /* Center the image and position the close button */
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+    }
+
+
+    .container {
+        padding: 16px;
+
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        padding-top: 60px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 60%;
+        /* Could be more or less, depending on screen size */
+    }
+
+
+
+    /* The Close Button (x) */
+    .closeBtn {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .closeBtn:hover,
+    .closeBtn:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    /* Add Zoom Animation */
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+        from {
+            -webkit-transform: scale(0)
+        }
+
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    @keyframes animatezoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+
+        .cancelbtn {
+            width: 100%;
+        }
+    }
+
+    /* Style Sale Order */
+    .box {
+        width: 300px;
+        /* border-bottom: 20px solid #03a9f4; */
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .box h2 {
+        color: #fff;
+        background: #03a9f4;
+        padding: 10px 20px;
+        font-size: 20px;
+        font-weight: 700;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .box ul {
+        position: relative;
+        background: #fff;
+    }
+
+
+    .box ul li {
+        list-style: none;
+        padding: 10px;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s;
+    }
+
+    .box ul li:hover {
+        transform: scale(1.1);
+        z-index: 5;
+        background: #25bcff;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        color: #fff;
+        opacity: 1;
+    }
+
+    .box ul li span {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        background: #25bcff;
+        color: #000;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        transform: translateY(-2px);
+    }
+
+    .box ul li:hover span {
+        background: #fff;
+        color: #25bcff;
+    }
+
+    .box ul li p {
+
+        text-align: left;
+        /* background: #25bcff; */
+        color: #000;
+        /* display: inline-block; */
+        /* border-radius: 50%; */
+        margin-left: 45px;
+        font-size: 12px;
+        font-weight: 600;
+        transform: translateY(-2px);
+    }
+</style>
+<script>
+    let MedicineList = [
+        {
+            "ID": "1",
+            "Name": "ProHealthinol",
+            "Batch name": "B12345X",
+            "Total quantity": "130",
+            "Selling price": "$10",
+            "Buy price": "$8",
+            "Supplier": "WellnessWarehouse Distributing"
+
+
+        },
+        {
+            "ID": "2",
+            "Name": "Medixol Plus",
+            "Batch name": "M6789Y",
+            "Total quantity": "100",
+            "Selling price": "$9",
+            "Buy price": "$7",
+            "Supplier": "VitaeTrade Enterprises"
+
+
+        },
+        {
+            "ID": "3",
+            "Name": "VitaCure Forte",
+            "Batch name": "HD5678C",
+            "Total quantity": "150",
+            "Selling price": "$10",
+            "Buy price": "$8",
+            "Supplier": "MedSource International"
+
+
+        },
+        {
+            "ID": "4",
+            "Name": "PainRelievex",
+            "Batch name": "HD5678C",
+            "Total quantity": "130",
+            "Selling price": "$6",
+            "Buy price": "$4",
+            "Supplier": "Apex Pharma Suppliers"
+
+
+        },
+        {
+            "ID": "5",
+            "Name": "AllerGuardian",
+            "Batch name": "B12345X",
+            "Total quantity": "100",
+            "Selling price": "$7",
+            "Buy price": "$5.77",
+            "Supplier": "MedSource International"
+
+
+        },
+        {
+            "ID": "6",
+            "Name": "NeuroStabilin",
+            "Batch name": "VP4321A",
+            "Total quantity": "90",
+            "Selling price": "$8",
+            "Buy price": "$6.99",
+            "Supplier": "WellnessWarehouse Distributing"
+
+
+        },
+        {
+            "ID": "7",
+            "Name": "DigestaEase",
+            "Batch name": "XR9876B",
+            "Total quantity": "90",
+            "Selling price": "$7",
+            "Buy price": "$5",
+            "Supplier": "GlobalHealth Suppliers"
+
+
+        },
+        {
+            "ID": "8",
+            "Name": "SleepWellin",
+            "Batch name": "VP4321A",
+            "Total quantity": "100",
+            "Selling price": "$11.77",
+            "Buy price": "$9",
+            "Supplier": "PharmaConnect Solutions"
+
+
+        },
+        {
+            "ID": "9",
+            "Name": "CardioGuard",
+            "Batch name": "VP4321A",
+            "Total quantity": "150",
+            "Selling price": "$9",
+            "Buy price": "$6",
+            "Supplier": "WellnessWarehouse Distributing"
+
+
+        },
+        {
+            "ID": "10",
+            "Name": "ImmunoBoostix",
+            "Batch name": "M6789Y",
+            "Total quantity": "100",
+            "Selling price": "$13",
+            "Buy price": "$10",
+            "Supplier": "Apex Pharma Suppliers"
+
+
+        },
+        {
+            "ID": "11",
+            "Name": "DigestiCare",
+            "Batch name": "M6789Y",
+            "Total quantity": "150",
+            "Selling price": "$13",
+            "Buy price": "$11",
+            "Supplier": "PharmaConnect Solutions"
+
+
+        },
+        {
+            "ID": "12",
+            "Name": "ArthroFlexin",
+            "Batch name": "BC1234Q",
+            "Total quantity": "100",
+            "Selling price": "$10",
+            "Buy price": "$7",
+            "Supplier": "Apex Pharma Suppliers"
+
+
+        }
+
+
+    ];
+
+    function addTable() {
+
+        var tableBody = document.getElementById("productTableBody");
+
+        for (var i = 0; i < MedicineList.length; i++) {
+            var row = document.createElement("tr");
+
+            row.innerHTML = "<td>" + MedicineList[i]['ID'] + "</td><td>" + MedicineList[i]['Name'] + "</td><td>" + MedicineList[i]['Batch name'] + "</td><td>" + MedicineList[i]['Total quantity'] + "</td><td>" + MedicineList[i]['Selling price'] + "</td><td>" + MedicineList[i]['Buy price'] + "</td><td>" + MedicineList[i]['Supplier'] + "</td>";
+
+            tableBody.appendChild(row);
+        }
+
+    }
+
+    function addProduct() {
+        var id = document.getElementById("ID").value;
+        var name = document.getElementById("Name").value;
+        var batchName = document.getElementById("Batch name").value;
+        var totalQuantity = document.getElementById("Total quantity").value;
+        var sellingPrice = document.getElementById("Selling price").value;
+        var buyPrice = document.getElementById("Buy price").value;
+        var supplier = document.getElementById("Supplier").value;
+
+        var tableBody = document.getElementById("productTableBody");
+        var newRow = document.createElement("tr");
+
+
+
+        if (!id || !name || !batchName || !totalQuantity || !sellingPrice || !buyPrice || !supplier) {
+            Swal.fire({
+                title: "<strong>Full fill the blank</strong>",
+                icon: "info",
+                html: `The text data cannot be blanked`,
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+
+                cancelButtonAriaLabel: "Thumbs down"
+            });
+
+        } else {
+            newRow.innerHTML = "<td>" + id + "</td><td>" + name + "</td><td>" + batchName + "</td><td>" + totalQuantity + "</td><td>" + sellingPrice + "</td><td>" + buyPrice + "</td><td>" + supplier + "</td>";
+
+            tableBody.appendChild(newRow);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+        }
+
+
+
+    }
+
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+</script>
+
+<body onload="addTable()">
+    <header class="cd__intro">
+        <div>
+            <i class="fa-solid fa-pills"></i>
+            <span style="font-size: 18px;"><strong>Medicine Product</strong></span></br>
+            <!-- <span>Home</span></br> -->
+            <i class='bx bx-menu'></i>
+            <!-- <span class="text"></span><br> -->
+            <hr class="red">
+        </div>
+
+    </header>
+
+    <main class="cd__main">
+
+        <div class="sidebar close">
+            <div class="logo-details">
+                <i class='bx bx-plus-medical'></i>
+                <span class="logo_name">PharCY</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="dashboard.html">
+                        <i class='bx bx-home'></i>
+                        <span class="link_name">Home</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="dashboard.html">Home</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <div class="iocn-link">
+                        <a href="#">
+                            <i class='bx bx-purchase-tag-alt'></i>
+                            <span class="link_name">Product</span>
+                        </a>
+                        <i class='bx bxs-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#">Product</a></li>
+                        <li><a href="medicine.html">Medicine</a></li>
+                        <li><a href="stock.html">Stock</a></li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="purchaseInvoice.html">
+                        <i class='bx bx-import'></i>
+                        <span class="link_name">Purchase</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="purchaseInvoice.html">Purchase</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="saleInvoice.html">
+                        <i class='bx bxs-printer'></i>
+                        <span class="link_name">Sales Invoice</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="saleInvoice.html">Sales Invoice</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="report.html">
+                        <i class='bx bx-bar-chart-alt'></i>
+                        <span class="link_name">Report</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="report.html">Report</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+        <section class="home-section">
+            <div class="home-content">
+                <h2>Medicine Product:</h2>
+
+                <div class="rowStock">
+                    <div class="columnStock1">
+                        <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search for names.."
+                            title="Type in a name">
+                        <div class="container mt-3">
+
+                            <table id="myTable" class="table table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch name</th>
+                                        <th>Total quantity</th>
+                                        <th>Selling price</th>
+                                        <th>Buy price</th>
+                                        <th>Supplier</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="productTableBody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="columnStock2">
+                        <button type="button" class="btn btn-primary"
+                            onclick="document.getElementById('id01').style.display='block'">Add Product</button>
+                        <br><br><br><br>
+                        <h3 style="color: dodgerblue; font-weight: 700;">Sale Orders</h3>
+                        <div
+                            style="box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; width: 100%;">
+                            <div class="box">
+                                <ul>
+                                    <li>
+                                        <span>1</span> Zopiclone</br>
+                                        <table style="text-align: left; width: 100%;">
+                                            <colgroup>
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                            </colgroup>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Code: </p>
+                                                    <p style="font-size: 15px;">KTX192</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Des: </p>
+                                                    <p style="font-size: 15px;">Bristol</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Quan</p>
+                                                    <p style="font-size: 15px;">20</p>
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                    </li>
+                                    <li><span>2</span> ImmunoBoostix</br>
+                                        <table style="text-align: left; width: 100%;">
+                                            <colgroup>
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                            </colgroup>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Code: </p>
+                                                    <p style="font-size: 15px;">KTH272</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Des: </p>
+                                                    <p style="font-size: 15px;">Glasgow</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Quan</p>
+                                                    <p style="font-size: 15px;">95</p>
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                    </li>
+                                    <li><span>3</span> Relicalm</br>
+                                        <table style="text-align: left; width: 100%;">
+                                            <colgroup>
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                            </colgroup>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Code: </p>
+                                                    <p style="font-size: 15px;">GVX186</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Des: </p>
+                                                    <p style="font-size: 15px;">Bristol</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Quan</p>
+                                                    <p style="font-size: 15px;">30</p>
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                    </li>
+                                    <li><span>4</span> DigestaEase</br>
+                                        <table style="text-align: left; width: 100%;">
+                                            <colgroup>
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                                <col style="width: 25%;">
+                                            </colgroup>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Code: </p>
+                                                    <p style="font-size: 15px;">FSM827</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Des: </p>
+                                                    <p style="font-size: 15px;">Belfast</p>
+                                                </td>
+                                                <td>
+                                                    <p style="color: #727272;">Quan</p>
+                                                    <p style="font-size: 15px;">50</p>
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="rowSec">
+                    <div class="columnSec2">
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="/action_page.php" method="post">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="closeBtn"
+                        title="Close Modal">&times;</span>
+                    <span
+                        style="text-align: center; font-size: 41px;font-weight: 600;background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Product
+                        Detail</span>
+                </div>
+
+                <div class="container">
+                    <table cellpadding="10" style="padding: 5px 5px 5px 5px;">
+
+                        <tr>
+                            <td><label for=""><b>ID</b></label></td>
+                            <td> <input type="text" id="ID" size="20" required></td>
+                            <td><label for=""><b>Name</b></label></td>
+                            <td><input type="text" id="Name" size="20" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for=""><b>Batch name</b></label></td>
+                            <td><input type="text" id="Batch name" size="20" required></td>
+                            <td><label for=""><b>Total quantity</b></label></td>
+                            <td><input type="text" id="Total quantity" size="20" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for=""><b>Selling price</b></label></td>
+                            <td><input type="text" id="Selling price" size="20" required></td>
+                            <td><label for=""><b>Buy price</b></label></td>
+                            <td><input type="text" id="Buy price" size="20" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for=""><b>Supplier</b></label></td>
+                            <td colspan="3"><input type="text" id="Supplier" size="65" required></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="container" style="background-color:#e2e2e2; ">
+                    <center>
+
+                        <button type="button"
+                            style="background: -webkit-linear-gradient(right, #56d8e4, #9f01ea); border: none; width: 100px;height: 45px; border-radius: 20px; cursor: pointer;font-weight: 700;"
+                            onclick="addProduct()">Add
+                            Product</button>
+                    </center>
+
+                </div>
+            </form>
+        </div>
+
+
+    </main>
+
+    <div class="footer">
+        <div>
+            <a onclick="window.scrollTo(0,0)"><img src="img/backtopbtn.png"
+                    style="width: 45px; height: 45px; float:right;"></a>
+
+            <div class="row">
+                <div class="column1">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.4248528798034!2d-0.16113062441123302!3d51.52376697181705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761acf335de791%3A0xfcd227d9a53748f3!2sThe%20Sherlock%20Holmes%20Museum!5e0!3m2!1sen!2s!4v1702054793994!5m2!1sen!2s"
+                        width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="column2">
+                    <h2><span id="icon" class="fa fa-map-marker"></span></h2>
+                    <p>Baker St, London NW1 6XE,
+                        <br />United Kingdom
+                    </p>
+                </div>
+                <div class="column3">
+                    <h2> <span id="icon" class="fa fa-phone"></span></h2>
+                    <p> Telephone: +123-456-7890</p>
+                </div>
+                <div class="column4">
+                    <h2><span id="icon" class="fa fa-envelope"></span></h2>
+                    <p>abcPharcymanag@gmai.com</p>
+                    <img src="img/social-twitter-icon.png" style="width: 40px; height: 40px; float:right; padding: 5px">
+                    <img src="img/ins.png" style="width: 40px; height: 40px; float:right; padding: 5px;">
+                    <img src="img/gg.JPG" style="width: 40px; height: 40px; float:right; padding: 5px;">
+                </div>
+            </div>
+
+            <div class="coppyRight">
+                <p>© Pharmacy Management | anh_tuyet</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Javascrip -->
+    <script src="./MainScrip.js"></script>
+</body>
+
+</html>
